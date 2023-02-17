@@ -65,7 +65,8 @@ func (c *Cache) Get(key string) (interface{}, error) {
 }
 
 func (c *Cache) Delete(key string) error {
-
+	c.Lock()
+	defer c.Unlock()
 
 	_, ok := c.values[key]
 	if ok {
